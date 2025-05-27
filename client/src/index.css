@@ -9,4 +9,7 @@
 @theme{ 
   --color-primary: #4fbf8b; 
   --color-primary-dull: #44ae7c;
+  --color-secondary: #fb923c;
+  --color-secondary-dull: #f88c2b;
+  --color-sub-text: #71717a;
 }
