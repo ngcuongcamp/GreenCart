@@ -10,11 +10,12 @@ export const AppContextProvider = ({ children }) => {
 
     const currency = import.meta.VITE_CURRENCY
     const navigate = useNavigate()
-    const [user, setUser] = useState(true)
+    const [user, setUser] = useState(null)
     const [isSeller, setIsSeller] = useState(false)
     const [isShowUserLogin, setIsShowUserLogin] = useState(false)
     const [products, setProducts] = useState([])
     const [cartItems, setCartItems] = useState({})
+    const [searchQuery, setSearchQuery] = useState({})
 
 
 
@@ -31,7 +32,7 @@ export const AppContextProvider = ({ children }) => {
     }, [products])
 
     // Add Product to Cart 
-    const addToCart = () => {
+    const addToCart = (itemId) => {
         let cartData = structuredClone(cartItems)
         if (cartData[itemId]) {
             cartData[itemId] += 1;
@@ -70,7 +71,7 @@ export const AppContextProvider = ({ children }) => {
 
 
 
-    const value = { navigate, user, setUser, isSeller, setIsSeller, isShowUserLogin, setIsShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart }
+    const value = { navigate, user, setUser, isSeller, setIsSeller, isShowUserLogin, setIsShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery }
 
 
     return <AppContext.Provider value={value}>

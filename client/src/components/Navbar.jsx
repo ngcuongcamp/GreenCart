@@ -5,13 +5,19 @@ import { useAppContext } from '../context/AppContext'
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
-    const { user, setUser, isShowUserLogin, setIsShowUserLogin, navigate } = useAppContext()
+    const { user, setUser, setIsShowUserLogin, navigate, setSearchQuery, searchQuery } = useAppContext()
 
     const signout = async () => {
         setUser(null)
         navigate('/')
         console.log('User signed out')
     }
+
+    useEffect(() => {
+        if (searchQuery.length > 0) {
+            navigate('/products')
+        }
+    }, [searchQuery])
 
     // Auto-close mobile menu on resize to desktop
     useEffect(() => {
@@ -43,7 +49,9 @@ const Navbar = () => {
                 {/* {user && <NavLink to="/orders" >My Orders</NavLink>} */}
 
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
-                    <input className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
+                    <input
+                        onChange={(e) => setSearchQuery(e.target.value.trim())}
+                        className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
                     <img src={assets.search_icon} alt='search-icon' className='w-4 h-4' />
                 </div>
 
@@ -63,7 +71,7 @@ const Navbar = () => {
                     // User Profile Icon with Dropdown
                     <div className='relative group'>
                         <img src={assets.profile_icon} alt="avatar-icon" className='w-10' />
-                        <ul className='hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 py-2.5 w-30 rounded-md text-sm z-40'>
+                        <ul className='hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 py-2.5 w-30 rounded-md text-sm'>
                             <li className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'
                                 onClick={
                                     () => navigate('/orders')
@@ -84,7 +92,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {open && (
-                <div className={`${open ? 'flex' : 'hidden'} absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}>
+                <div className={`${open ? 'flex' : 'hidden'}  absolute z-[99] top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}>
                     <NavLink to="/" className="block" onClick={() => setOpen(false)}>Home</NavLink>
 
                     <NavLink to="/products" className="block" onClick={() => setOpen(false)}>All Product</NavLink>
