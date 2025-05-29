@@ -9,6 +9,8 @@ import AllProductsPage from './pages/AllProductsPage';
 import CategoryProductsPage from './pages/ProductsCategoryPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProductsCategoryPage from './pages/ProductsCategoryPage';
+import SingleProductPage from './pages/SingleProductPage';
+import ScrollToTopButton from './components/ScrollToTop';
 
 const App = () => {
   const isSellerPath = useLocation().pathname.startsWith('/seller');
@@ -26,10 +28,12 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<AllProductsPage />} />
           <Route path="/products/category/:categoryName" element={<ProductsCategoryPage />} />
+          <Route path="/products/:category/:productId" element={<SingleProductPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </div>
       {!isSellerPath && <Footer />}
+      <ScrollToTopButton />
     </div>
   )
 }

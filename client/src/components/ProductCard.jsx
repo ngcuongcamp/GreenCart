@@ -1,13 +1,17 @@
-import React from 'react'
 import { assets } from '../assets/assets'
 import { useAppContext } from '../context/AppContext'
 import { NavLink } from 'react-router-dom'
 
 const ProductCard = ({ product }) => {
-    const { currency, addToCart, removeFromCart, cartItems } = useAppContext()
+    const { currency, addToCart, removeFromCart, cartItems, navigate } = useAppContext()
 
     return product && (
-        <div className="max-w-xs bg-white rounded-2xl shadow-2xl overflow-hidden border border-primary/40  hover:shadow-lg transition">
+        <div
+            onClick={() => {
+                navigate(`/products/${product.category.toLowerCase()}/${product._id}`)
+                scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            className="max-w-xs bg-white rounded-2xl shadow-2xl overflow-hidden border border-primary/40  hover:shadow-lg transition">
             <img
                 className="w-full object-cover cursor-pointer transition duration-300 ease-in-out hover:scale-105"
                 src={product.image[0]}
@@ -39,7 +43,7 @@ const ProductCard = ({ product }) => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                    <p className='flex gap-3'>
+                    <p className='flex gap-1.5'>
                         <span className="text-primary font-bold text-2xl">{currency}${product.offerPrice || "NA"} </span>
 
                         <span className="text-sub-text text-lg line-through ">{currency}${product.price || "NA"} </span>

@@ -22,8 +22,10 @@ import black_arrow_icon from "./black_arrow_icon.svg";
 import white_arrow_icon from "./white_arrow_icon.svg";
 import main_banner_bg from "./main_banner_bg.png";
 import main_banner_bg_sm from "./main_banner_bg_sm.png";
+import main_banner_bg_sm2 from "./main_banner_bg_sm2.png";
 import bottom_banner_image from "./bottom_banner_image.png";
 import bottom_banner_image_sm from "./bottom_banner_image_sm.png";
+import bottom_banner_image_sm2 from "./bottom_banner_image_sm2.png";
 import add_address_iamge from "./add_address_image.svg";
 import organic_vegitable_image from "./organic_vegitable_image.png";
 import fresh_fruits_image from "./fresh_fruits_image.png";
@@ -94,8 +96,10 @@ export const assets = {
   white_arrow_icon,
   main_banner_bg,
   main_banner_bg_sm,
+  main_banner_bg_sm2,
   bottom_banner_image,
   bottom_banner_image_sm,
+  bottom_banner_image_sm2,
   add_address_iamge,
   box_icon,
 };
