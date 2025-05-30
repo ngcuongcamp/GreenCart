@@ -11,6 +11,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import ProductsCategoryPage from './pages/ProductsCategoryPage';
 import SingleProductPage from './pages/SingleProductPage';
 import ScrollToTopButton from './components/ScrollToTop';
+import CartPage from './pages/CartPage';
 
 const App = () => {
   const isSellerPath = useLocation().pathname.startsWith('/seller');
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/products" element={<AllProductsPage />} />
           <Route path="/products/category/:categoryName" element={<ProductsCategoryPage />} />
           <Route path="/products/:category/:productId" element={<SingleProductPage />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </div>

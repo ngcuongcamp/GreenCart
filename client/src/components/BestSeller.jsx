@@ -12,7 +12,7 @@ const BestSeller = () => {
             <p className="text-2xl md:text-3xl font-medium">
                 Best Seller
             </p>
-            <div className='grid grid-cols-2  gap-3 sm:grid-cols-3 md:gap-6 lg:grid-cols-4 xl:grid-cols-5   mt-6 '>
+            <div className='grid  grid-cols-2  gap-3 sm:grid-cols-3 md:gap-6 lg:grid-cols-4 xl:grid-cols-5   mt-6 '>
                 {products.filter((product) => product.inStock).slice(0, 10).map((product, index) => (
                     <ProductCard key={index} product={product} />
                 ))}

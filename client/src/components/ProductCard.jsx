@@ -7,20 +7,30 @@ const ProductCard = ({ product }) => {
 
     return product && (
         <div
-            onClick={() => {
-                navigate(`/products/${product.category.toLowerCase()}/${product._id}`)
-                scrollTo({ top: 0, behavior: 'smooth' })
-            }}
-            className="max-w-xs bg-white rounded-2xl shadow-2xl overflow-hidden border border-primary/40  hover:shadow-lg transition">
-            <img
-                className="w-full object-cover cursor-pointer transition duration-300 ease-in-out hover:scale-105"
-                src={product.image[0]}
-                alt={product.name}
-            />
-            <div className="p-4">
+            className=" max-w-xs bg-white rounded-2xl shadow-2xl overflow-hidden border border-primary/40  hover:shadow-lg transition">
 
+            <div className='px-2 cursor-pointer'
+                onClick={() => {
+                    navigate(`/products/${product.category.toLowerCase()}/${product._id}`,)
+                    scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+            >
+
+                <div className='group cursor-pointer flex items-center justify-center '>
+
+                    <img
+                        className="group-hover:scale-105 transition max-w-26 md:max-w-36 cursor-pointer  duration-300 ease-in-out hover:scale-105"
+                        src={product.image[0]}
+                        alt={product.name}
+                    />
+                </div>
                 <h3 className="text-lg font-semibold select-none text-gray-800 h-6 line-clamp-2">{product.name}</h3>
                 <p className="text-sub-text text-sm mb-1 h-10 line-clamp-2">{product['description'][0]}</p>
+
+            </div>
+
+            <div className="px-2 pb-2">
+
                 <NavLink to={`/products?category=${product.category.toLowerCase()}`} className="text-white text-sm mb-1 flex bg-primary/80 py-0.5 ">
                     <span>#</span>
                     {product['category']}
@@ -44,9 +54,9 @@ const ProductCard = ({ product }) => {
 
                 <div className="flex items-center justify-between">
                     <p className='flex gap-1.5'>
-                        <span className="text-primary font-bold text-2xl">{currency}${product.offerPrice || "NA"} </span>
+                        <span className="md:text-xl text-base font-medium text-primary">{currency}{product.offerPrice || "NA"} </span>
 
-                        <span className="text-sub-text text-lg line-through ">{currency}${product.price || "NA"} </span>
+                        <span className="text-sub-text  md:text-sm text-xs line-through">{currency}{product.price || "NA"} </span>
                     </p>
 
                     {!cartItems[product._id] ? (

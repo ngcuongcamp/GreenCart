@@ -1,14 +1,15 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { dummyProducts } from "../assets/assets";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 export const AppContext = createContext()
 
 
 export const AppContextProvider = ({ children }) => {
 
-    const currency = import.meta.VITE_CURRENCY
+    const currency = import.meta.env.VITE_CURRENCY;
+
     const navigate = useNavigate()
     const [user, setUser] = useState(null)
     const [isSeller, setIsSeller] = useState(false)
@@ -69,9 +70,32 @@ export const AppContextProvider = ({ children }) => {
 
 
 
+    // Get cart item count 
+    const getCartCount = () => {
+        let totalCount = 0
+        for (const item in cartItems) {
+            totalCount += cartItems[item];
+        }
+
+        return totalCount;
+    }
 
 
-    const value = { navigate, user, setUser, isSeller, setIsSeller, isShowUserLogin, setIsShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery }
+    // Get Cart Total Amount
+    const getCartAmount = () => {
+        let totalAmount = 0;
+        for (const items in cartItems) {
+            let itemInfo = products.find((product) => product.id === items);
+            if (cartItems[items] > 0) {
+                totalAmount += itemInfo.offerPrice * cartItems[items];
+            }
+        }
+        return Math.floor(totalAmount * 100) / 100;
+    };
+
+
+
+    const value = { navigate, user, setUser, isSeller, setIsSeller, isShowUserLogin, setIsShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartAmount, getCartCount }
 
 
     return <AppContext.Provider value={value}>
