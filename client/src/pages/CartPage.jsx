@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useAppContext } from "../context/AppContext";
+import { assets } from "../assets/assets";
 
 const CartPage = () => {
 
-    const { currency, cartItems, getCartAmount } = useAppContext();
+    const { currency, cartItems, getCartAmount, navigate } = useAppContext();
     const [showAddress, setShowAddress] = useState(false);
 
 
@@ -39,7 +40,7 @@ const CartPage = () => {
             {/* Left: Cart */}
             <div className="flex-1 max-w-4xl">
                 <h1 className="text-3xl font-medium mb-6">
-                    Shopping Cart <span className="text-sm text-indigo-500">{getCartAmount()} Items</span>
+                    Shopping Cart <span className="text-sm text-primary">{getCartAmount()} Items</span>
                 </h1>
 
                 <div className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 text-base font-medium pb-3">
@@ -77,17 +78,22 @@ const CartPage = () => {
                             {currency}{product.offerPrice * product.quantity}
                         </p>
 
-                        <button className="mx-auto text-red-500">
+                        <button className="mx-auto text-secondary hover:text-secondary-dull cursor-pointer">
                             Remove
                         </button>
                     </div>
                 ))}
 
-                <button className="group flex items-center mt-8 gap-2 text-indigo-500 font-medium">
-                    <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
-                        <path d="M14.09 5.5H1M6.143 10 1 5.5 6.143 1" stroke="#615fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    Continue Shopping
+                <button className="group flex items-center mt-8 gap-4 text-primary font-medium hover:text-primary-dull group cursor-pointer "
+                    onClick={() => {
+                        navigate('/products');
+                    }}
+                >
+
+                    <img className="translate-x-2 group-hover:translate-x-1 transition-all" src={assets.arrow_right_icon_colored} alt="back-icon" />
+                    <span>
+                        Continue Shopping
+                    </span>
                 </button>
             </div>
 
@@ -102,14 +108,14 @@ const CartPage = () => {
                         <p className="text-gray-500">No address found</p>
                         <button
                             onClick={() => setShowAddress(!showAddress)}
-                            className="text-indigo-500 hover:underline"
+                            className="text-primary transition cursor-pointer hover:underline "
                         >
                             Change
                         </button>
                         {showAddress && (
                             <div className="absolute top-12 py-1 bg-white border border-gray-300 text-sm w-full z-10">
                                 <p onClick={() => setShowAddress(false)} className="p-2 hover:bg-gray-100">New York, USA</p>
-                                <p onClick={() => setShowAddress(false)} className="text-indigo-500 text-center p-2 hover:bg-indigo-100">Add address</p>
+                                <p onClick={() => setShowAddress(false)} className="text-primary text-center p-2 hover:bg-indigo-100">Add address</p>
                             </div>
                         )}
                     </div>
@@ -125,14 +131,14 @@ const CartPage = () => {
 
                 <div className="text-gray-600 mt-4 space-y-2 text-sm">
                     <p className="flex justify-between"><span>Items Total</span><span>{currency}{total}</span></p>
-                    <p className="flex justify-between"><span>Shipping Fee</span><span className="text-green-600">Free</span></p>
+                    <p className="flex justify-between"><span>Shipping Fee</span><span className="text-secondary-dull">Free</span></p>
                     <p className="flex justify-between"><span>Tax (2%)</span><span>{currency}{tax}</span></p>
                     <p className="flex justify-between text-base font-semibold mt-3">
                         <span>Total:</span><span>{currency}{grandTotal}</span>
                     </p>
                 </div>
 
-                <button className="w-full py-3 mt-6 bg-indigo-500 text-white font-medium hover:bg-indigo-600 transition">
+                <button className="w-full py-3 mt-6 bg-primary text-white font-medium hover:bg-primary-dull transition cursor-pointer">
                     Place Order
                 </button>
             </div>
