@@ -19,7 +19,6 @@ export const AppContextProvider = ({ children }) => {
     const [searchQuery, setSearchQuery] = useState({})
 
 
-
     // Fetch all products (dummy data for now)
     // In a real application, this would be replaced with an API call
     const fetchProducts = async () => {

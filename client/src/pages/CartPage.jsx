@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
-import { assets } from "../assets/assets";
+import { assets, dummyAddress } from "../assets/assets";
 
 const CartPage = () => {
 
-    const { currency, cartItems, getCartAmount, navigate } = useAppContext();
+    const { currency, cartItems, getCartAmount, getCartCount, navigate, removeFromCart } = useAppContext();
     const [showAddress, setShowAddress] = useState(false);
+    const [cartList, setCartList] = useState([])
+    const [address, setAddress] = useState(dummyAddress)
+    const [selectedAddress, setSelectedAddress] = useState(dummyAddress[0]);
+    const [paymentOption, setPaymentOption] = useState("COD");
 
-
-    console.log(cartItems)
 
     const [products, setProducts] = useState([
         {
@@ -23,6 +25,33 @@ const CartPage = () => {
             category: "Footwear",
         },
     ]);
+
+    console.log(cartItems)
+
+    const getCart = () => {
+        let tempArray = []
+        for (const key in cartItems) {
+            const product = products.find((item) => item._id === key);
+            product.quantity = cartItems[key];
+            tempArray.push(product);
+        }
+
+        setCartList(tempArray);
+
+    }
+
+    useEffect(() => {
+        if (products.length > 0 && cartItems) {
+            getCart();
+        }
+
+        console.log(cartList)
+    }, [products, cartItems])
+
+
+
+
+
 
     const total = products.reduce((acc, p) => acc + p.offerPrice * p.quantity, 0);
     const tax = +(total * 0.02).toFixed(2);
