@@ -26,7 +26,8 @@ import main_banner_bg_sm2 from "./main_banner_bg_sm2.png";
 import bottom_banner_image from "./bottom_banner_image.png";
 import bottom_banner_image_sm from "./bottom_banner_image_sm.png";
 import bottom_banner_image_sm2 from "./bottom_banner_image_sm2.png";
-import add_address_iamge from "./add_address_image.svg";
+// import add_address_image from "./add_address_image.svg";
+import add_address_image from "./shipping_address.png";
 import organic_vegitable_image from "./organic_vegitable_image.png";
 import fresh_fruits_image from "./fresh_fruits_image.png";
 import bottles_image from "./bottles_image.png";
@@ -100,7 +101,7 @@ export const assets = {
   bottom_banner_image,
   bottom_banner_image_sm,
   bottom_banner_image_sm2,
-  add_address_iamge,
+  add_address_image,
   box_icon,
 };
 

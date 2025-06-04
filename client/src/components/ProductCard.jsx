@@ -64,7 +64,7 @@ const ProductCard = ({ product }) => {
                             onClick={() => {
                                 addToCart(product._id)
                             }}
-                            className="flex gap-1 px-4 py-1.5 text-white text-sm rounded-lg transition  border-primary border-1 bg-primary/10 cursor-pointer select-none md:w-[80px] w-[64px] justify-center"
+                            className="flex gap-1 px-4 py-1.5 text-white text-sm  transition  bg-primary/20 border-1  cursor-pointer select-none md:w-[80px] w-[64px] justify-center rounded-md"
                         >
                             <img src={assets.cart_icon} alt="cart_icon" />
                             <span className='text-sm text-primary font-bold'>
@@ -72,12 +72,12 @@ const ProductCard = ({ product }) => {
                             </span>
                         </button>
                     ) : (
-                        <div className=" flex items-center justify-center gap-2 md:w-20 w-16 h-[34px] ">
+                        <div className=" flex items-center justify-center gap-2 md:w-20 w-16 h-[34px] bg-primary/20 rounded-md">
                             <button
                                 onClick={() => {
                                     removeFromCart(product._id)
                                 }}
-                                className="cursor-pointer text-md px-2 h-full"
+                                className="cursor-pointer text-md px-2 h-full text-primary"
                             >
                                 −
                             </button>
@@ -88,7 +88,7 @@ const ProductCard = ({ product }) => {
                                 onClick={() => {
                                     addToCart(product._id)
                                 }}
-                                className="cursor-pointer text-md px-2 h-full"
+                                className="cursor-pointer text-md px-2 h-full text-primary"
                             >
                                 +
                             </button>

@@ -45,13 +45,6 @@ export const AppContextProvider = ({ children }) => {
         toast.success("Added to cart!")
     }
 
-    // Update Cart Item Quantity 
-    const updateCartItem = (itemId, quantity) => {
-        let cartData = structuredClone(cartItems);
-        cartData[itemId] = quantity;
-        setCartItems(cartData);
-        toast.success("Cart updated!")
-    }
 
     // Remove Product from Cart
     const removeFromCart = (itemId) => {
@@ -66,6 +59,28 @@ export const AppContextProvider = ({ children }) => {
         toast.success("Removed from cart!")
         setCartItems(cartData);
     }
+
+    // Delete Product from Cart
+    const deleteFromCart = (itemId) => {
+        let cartData = structuredClone(cartItems);
+
+        if (cartData[itemId]) {
+            delete cartData[itemId]; // Xóa sản phẩm khỏi cart hoàn toàn
+            toast.success("Item removed from cart!");
+        }
+
+        setCartItems(cartData);
+    }
+
+    // Update Cart Item Quantity 
+    const updateCartItem = (itemId, quantity) => {
+        let cartData = structuredClone(cartItems);
+        cartData[itemId] = quantity;
+        setCartItems(cartData);
+        toast.success("Cart updated!")
+    }
+
+
 
 
 
@@ -82,19 +97,25 @@ export const AppContextProvider = ({ children }) => {
 
     // Get Cart Total Amount
     const getCartAmount = () => {
+
         let totalAmount = 0;
-        for (const items in cartItems) {
-            let itemInfo = products.find((product) => product.id === items);
-            if (cartItems[items] > 0) {
-                totalAmount += itemInfo.offerPrice * cartItems[items];
+        for (const itemId in cartItems) {
+            const itemInfo = products.find((product) => String(product._id) === itemId);
+
+            if (itemInfo && cartItems[itemId] > 0) {
+                totalAmount += itemInfo.offerPrice * cartItems[itemId];
             }
         }
-        return Math.floor(totalAmount * 100) / 100;
+        return Math.floor(totalAmount * 100) / 100; // làm tròn 2 chữ số
     };
 
 
+    // place order 
+    const placeOrder = async () => {
 
-    const value = { navigate, user, setUser, isSeller, setIsSeller, isShowUserLogin, setIsShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartAmount, getCartCount }
+    }
+
+    const value = { navigate, user, setUser, isSeller, setIsSeller, isShowUserLogin, setIsShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, deleteFromCart, cartItems, searchQuery, setSearchQuery, getCartAmount, getCartCount, placeOrder }
 
 
     return <AppContext.Provider value={value}>

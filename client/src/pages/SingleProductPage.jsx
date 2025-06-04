@@ -13,7 +13,6 @@ const SingleProductPage = () => {
 
 
     const [relatedProducts, setRelatedProducts] = useState([]);
-    // const [thumbnail, setThumbnail] = useState(product?.image[0]);
 
     const [thumbnail, setThumbnail] = useState(null);
 
