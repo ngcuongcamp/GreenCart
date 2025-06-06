@@ -1,16 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 @import "tailwindcss";
 
-*{
+* {
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
-@theme{ 
-  --color-primary: #4fbf8b; 
+@theme {
+  --color-primary: #4fbf8b;
   --color-primary-dull: #44ae7c;
   --color-secondary: #fb923c;
   --color-secondary-dull: #f88c2b;
   --color-sub-text: #71717a;
   --color-error: #ef4444;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

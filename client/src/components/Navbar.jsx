@@ -71,7 +71,7 @@ const Navbar = () => {
                     // User Profile Icon with Dropdown
                     <div className='relative group'>
                         <img src={assets.profile_icon} alt="avatar-icon" className='w-10' />
-                        <ul className='hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 py-2.5 w-30 rounded-md text-sm'>
+                        <ul className='hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 py-2.5 w-30 rounded-md text-sm z-50'>
                             <li className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'
                                 onClick={
                                     () => navigate('/orders')
@@ -102,7 +102,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {open && (
-                <div className={`${open ? 'flex' : 'hidden'}  absolute z-[99] top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}>
+                <div className={`${open ? 'flex' : 'hidden'}  absolute  top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden `}>
                     <NavLink to="/" className="block" onClick={() => setOpen(false)}>Home</NavLink>
 
                     <NavLink to="/products" className="block" onClick={() => setOpen(false)}>All Product</NavLink>

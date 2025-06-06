@@ -13,7 +13,7 @@ const ProductsCategoryPage = () => {
     const filteredProducts = products.filter((product) => product.category.toLowerCase() === categoryName);
 
 
-    console.log(searchCategory)
+    // console.log(filteredProducts)
 
 
 

@@ -31,7 +31,15 @@ const ProductCard = ({ product }) => {
 
             <div className="px-2 pb-2">
 
-                <NavLink to={`/products?category=${product.category.toLowerCase()}`} className="text-white text-sm mb-1 flex bg-primary/80 py-0.5 ">
+                <NavLink to={`/products/category/${product.category.toLowerCase()}`} className="text-white text-sm mb-1 flex bg-primary/80 py-0.5 "
+                    onClick={() => {
+                        scrollTo({
+                            top: 0,
+                            behavior: "smooth"
+                        })
+                    }}
+
+                >
                     <span>#</span>
                     {product['category']}
                 </NavLink>

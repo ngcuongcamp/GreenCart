@@ -5,8 +5,7 @@ import { FaRegPlusSquare, FaListUl } from "react-icons/fa";
 import { HiOutlineBadgeCheck } from "react-icons/hi";
 
 const SellerLayout = () => {
-
-    const { setIsSeller } = useAppContext()
+    const { setIsSeller } = useAppContext();
 
     const sidebarLinks = [
         { name: "Add Product", path: "/seller", icon: <FaRegPlusSquare size={20} /> },
@@ -14,10 +13,9 @@ const SellerLayout = () => {
         { name: "Orders", path: "/seller/orders", icon: <HiOutlineBadgeCheck size={24} /> },
     ];
 
-
     const signOut = async () => {
         setIsSeller(false);
-    }
+    };
 
     return (
         <>
@@ -26,25 +24,31 @@ const SellerLayout = () => {
                     <img className="h-9" src={assets.logo} alt="logo" />
                 </Link>
                 <div className="flex items-center gap-5 text-gray-500">
-                    <p>Hi!
-                        <span className="text-primary font-bold">  Admin</span>
+                    <p>
+                        Hi! <span className="text-primary font-bold">Admin</span>
                     </p>
                     <button
-                        onClick={() => {
-                            signOut()
-                        }}
-                        className=' rounded-full text-sm px-4 cursor-pointer bg-primary text-white py-1.5'>Logout</button>
+                        onClick={() => signOut()}
+                        className="rounded-full text-sm px-4 cursor-pointer bg-primary text-white py-1.5"
+                    >
+                        Logout
+                    </button>
                 </div>
             </div>
 
-            <div className="flex ">
+            <div className="flex">
                 <div className="md:w-64 w-16 border-r h-[550px] text-base border-gray-300 pt-4 flex flex-col transition-all duration-300">
                     {sidebarLinks.map((item, index) => (
-                        <NavLink to={item.path} key={item.name} end={item.path === "/seller"}
-                            className={({ isActive }) => `
-                          flex items-center py-3 px-4 gap-3
-                          ${isActive ? "border-r-4 md:border-r-[6px] bg-primary/10 border-primary text-primary" : "hover:bg-gray-100/90 border-white"}
-                        `}
+                        <NavLink
+                            to={item.path}
+                            key={item.name}
+                            end={item.path === "/seller"}
+                            className={({ isActive }) =>
+                                `flex items-center py-3 px-4 gap-3 border-r-4 md:border-r-[6px] ${isActive
+                                    ? "bg-primary/10 border-primary text-primary"
+                                    : "hover:bg-gray-100/90 border-transparent"
+                                }`
+                            }
                         >
                             {item.icon}
                             <p className="md:block hidden text-center">{item.name}</p>
@@ -53,10 +57,8 @@ const SellerLayout = () => {
                 </div>
                 <Outlet />
             </div>
-
         </>
     );
 };
 
-
-export default SellerLayout
+export default SellerLayout;
