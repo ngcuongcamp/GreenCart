@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken'
 import ResponseModel from '../models/ResponseModel.js';
 
 
-
 const authSeller = async (req, res, next) => {
     const { sellerToken } = req.cookies;
 

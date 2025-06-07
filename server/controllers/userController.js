@@ -163,7 +163,7 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
 
-    
+
     try {
         res.clearCookie("token", {
             httpOnly: true,
